@@ -38,10 +38,10 @@ export default function TrackRecordSection() {
         <div className="track-el mx-auto mb-2 h-px w-16 bg-gradient-to-r from-gold to-green-accent" />
         <div className="track-el flex flex-col divide-y divide-border-gray border-y border-border-gray md:flex-row md:divide-x md:divide-y-0">
           <div className="flex flex-1 flex-col items-center py-10 md:py-12">
-            <MetricCounter value="11+" label="Average ROI" />
+            <MetricCounter value="11x" label="Average ROI" />
           </div>
           <div className="flex flex-1 flex-col items-center py-10 md:py-12 md:border-l md:border-border-gray">
-            <MetricCounter value="$400M+" label="Portfolio Valuation" />
+            <MetricCounter value="$150M+" label="Portfolio Valuation" />
           </div>
           <div className="flex flex-1 flex-col items-center py-10 md:py-12 md:border-l md:border-border-gray">
             <MetricCounter value="5" label="Successful Exits" />
