@@ -5,9 +5,10 @@ interface PortfolioCardProps {
   category: string;
   name: string;
   description: string;
+  link: string;
 }
 
-export default function PortfolioCard({ image, category, name, description }: PortfolioCardProps) {
+export default function PortfolioCard({ image, category, name, description, link }: PortfolioCardProps) {
   return (
     <div className="group overflow-hidden rounded-lg border border-border-gray bg-white shadow-card transition-all duration-300 hover:shadow-card-hover">
       <div className="aspect-[16/10] overflow-hidden">
@@ -22,8 +23,9 @@ export default function PortfolioCard({ image, category, name, description }: Po
         <h3 className="mt-2 font-serif text-h3 text-ink">{name}</h3>
         <p className="mt-2 text-body leading-relaxed text-slate line-clamp-3">{description}</p>
         <a
-          href="#"
-          onClick={(e) => e.preventDefault()}
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
           className="mt-4 inline-flex items-center gap-1.5 text-caption uppercase tracking-wider text-blue-accent transition-all duration-200 hover:underline"
         >
           Learn More

@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowRight } from 'lucide-react';
 import SectionLabel from '@/components/SectionLabel';
 import PortfolioCard from '@/components/PortfolioCard';
 
@@ -14,6 +13,7 @@ const companies = [
     name: 'MCASH',
     description:
       'Accelerating the transition to clean energy with electric vehicle infrastructure and decentralized wireless access.',
+    link: 'https://www.mcash.id',
   },
   {
     image: '/images/portfolio-nfcx.jpg',
@@ -21,6 +21,7 @@ const companies = [
     name: 'NFCX',
     description:
       'Complete EV infrastructure, digital product aggregation, and cloud advertising platform for brick-and-mortar retailers.',
+    link: 'https://www.nfcindonesia.id',
   },
   {
     image: '/images/portfolio-risetai.jpg',
@@ -28,6 +29,7 @@ const companies = [
     name: 'Riset.ai',
     description:
       'Advanced Computer Vision solutions aligning AI systems with human intention for intelligent retail and transportation.',
+    link: 'https://www.riset.ai',
   },
 ];
 
@@ -65,21 +67,12 @@ export default function PortfolioSection() {
                 category={co.category}
                 name={co.name}
                 description={co.description}
+                link={co.link}
               />
             </div>
           ))}
         </div>
 
-        <div className="portf-el mt-10">
-          <a
-            href="#"
-            onClick={(e) => e.preventDefault()}
-            className="inline-flex items-center gap-2 text-caption uppercase tracking-wider text-blue-accent transition-all duration-200 hover:underline"
-          >
-            View All Investments
-            <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
       </div>
     </section>
   );
