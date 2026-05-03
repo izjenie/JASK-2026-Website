@@ -29,7 +29,7 @@ export default function HeroSection() {
             <div className="hero-overline flex items-center gap-2.5">
               <div className="h-1.5 w-1.5 rounded-full bg-green-accent" />
               <p className="text-overline uppercase text-gold tracking-[0.12em]">
-                VENTURE CAPITAL
+                VENTURE BUILDER
               </p>
             </div>
             <h1 className="hero-title mt-6 font-serif text-display-xl text-white">
