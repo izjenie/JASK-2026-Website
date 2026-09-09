@@ -1,46 +1,40 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SectionLabel from '@/components/SectionLabel';
-
-gsap.registerPlugin(ScrollTrigger);
+import SectionHead from '@/components/SectionHead';
+import { useReveal } from '@/hooks/use-reveal';
 
 export default function ContactSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from('.contact-el', {
-        opacity: 0, y: 30, duration: 0.7, stagger: 0.1, ease: 'power3.out',
-        scrollTrigger: { trigger: section, start: 'top 85%', once: true },
-      });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
+  const sectionRef = useReveal<HTMLElement>('.contact-el', 0.1);
 
   return (
-    <section id="contact" ref={sectionRef} className="bg-warm-white py-28 md:py-36">
+    <section id="contact" ref={sectionRef} className="bg-paper py-28 md:py-32">
       <div className="container-main">
-        <div className="contact-el max-w-[560px]">
-          <SectionLabel text="Get In Touch" />
-          <h2 className="mt-4 font-serif text-display-l text-ink">Partner with Us</h2>
-          <p className="mt-5 text-body-l leading-relaxed text-slate">
-            Are you an ambitious founder with a groundbreaking idea in AI or finance? We want to
-            hear from you. Let&rsquo;s build the future together.
-          </p>
+        <div className="contact-el">
+          <SectionHead
+            eyebrow="Get In Touch"
+            title="Building something at the edge of AI and finance?"
+            side=""
+          />
+        </div>
 
-          <div className="mt-10 space-y-3">
-            <a href="mailto:info@jaskapital.com" className="block text-base text-blue-accent hover:underline">
-              info@jaskapital.com
-            </a>
-            <p className="text-base text-slate">+6221-50250350</p>
+        <div className="contact-el grid grid-cols-1 gap-12 border-t border-line pt-16 md:grid-cols-[1.1fr_1fr] md:gap-20">
+          <div>
+            <div className="mb-8">
+              <div className="mb-2.5 text-[12.5px] uppercase tracking-[0.1em] text-ink-soft">Email</div>
+              <a
+                href="mailto:info@jaskapital.com"
+                className="font-serif text-[26px] font-semibold text-ink transition-colors duration-200 hover:text-gold-deep"
+              >
+                info@jaskapital.com
+              </a>
+            </div>
+            <div>
+              <div className="mb-2.5 text-[12.5px] uppercase tracking-[0.1em] text-ink-soft">Phone</div>
+              <div className="font-serif text-[26px] font-semibold text-ink">+6221-50250350</div>
+            </div>
           </div>
-
-
+          <p className="text-[15px] leading-[1.7] text-ink-soft">
+            We meet founders early, before the deck is polished and before the metrics are perfect.
+            If you are building with AI in fintech or digital infrastructure, reach out.
+          </p>
         </div>
       </div>
     </section>

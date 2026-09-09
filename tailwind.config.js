@@ -40,24 +40,24 @@ module.exports = {
         },
         navy: {
           DEFAULT: '#0A1628',
-          light: '#1E293B',
         },
+        navy2: '#101F36',
         gold: {
           DEFAULT: '#B8860B',
-          light: '#D4AF37',
+          light: '#D6A21A',
         },
-        ink: {
-          DEFAULT: '#0F172A',
-          light: '#374151',
+        'gold-deep': '#7A5C08',
+        green: {
+          DEFAULT: '#2E7D4A',
         },
-        slate: '#6B7280',
-        'warm-white': '#FAFBFC',
-        'soft-gray': '#F4F5F7',
-        'border-gray': '#E5E7EB',
-        'light-border': '#D1D5DB',
-        'blue-accent': '#1E3A5F',
         'green-accent': '#2E7D4A',
-        'green-soft': '#E8F5E9',
+        ink: {
+          DEFAULT: '#0A1628',
+          soft: '#4B5566',
+        },
+        cream: '#EFEBE2',
+        paper: '#FBFAF8',
+        line: '#DCD8D0',
       },
       fontFamily: {
         serif: ['Playfair Display', 'Georgia', 'serif'],

@@ -1,10 +1,6 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SectionLabel from '@/components/SectionLabel';
+import SectionHead from '@/components/SectionHead';
 import PortfolioCard from '@/components/PortfolioCard';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useReveal } from '@/hooks/use-reveal';
 
 const companies = [
   {
@@ -34,34 +30,22 @@ const companies = [
 ];
 
 export default function PortfolioSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from('.portf-el', {
-        opacity: 0, y: 30, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: section, start: 'top 85%', once: true },
-      });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
+  const sectionRef = useReveal<HTMLElement>('.portf-el');
 
   return (
-    <section id="portfolio" ref={sectionRef} className="bg-white py-28 md:py-36">
+    <section id="portfolio" ref={sectionRef} className="bg-paper py-28 md:py-32">
       <div className="container-main">
-        <div className="portf-el mb-14">
-          <SectionLabel text="Portfolio" />
-          <h2 className="mt-4 font-serif text-display-l text-ink">Companies Shaping the Future</h2>
-          <div className="mt-4 h-px w-10 bg-gradient-to-r from-gold to-green-accent" />
+        <div className="portf-el">
+          <SectionHead
+            eyebrow="Portfolio"
+            title="Companies We've Built With"
+            side="Three of our 12+ portfolio companies, across fintech and digital infrastructure."
+          />
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="portf-el grid grid-cols-1 gap-x-8 gap-y-12 border-t border-line md:grid-cols-3">
           {companies.map((co) => (
-            <div key={co.name} className="portf-el">
+            <div key={co.name} className="border-t border-line pt-6 md:border-t-0 md:border-r md:border-line md:pr-8 md:pt-0 [&:nth-child(3)]:md:border-r-0">
               <PortfolioCard
                 image={co.image}
                 category={co.category}
@@ -72,7 +56,6 @@ export default function PortfolioSection() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

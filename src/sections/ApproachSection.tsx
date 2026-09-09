@@ -1,69 +1,58 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import SectionLabel from '@/components/SectionLabel';
-import PillarCard from '@/components/PillarCard';
-
-gsap.registerPlugin(ScrollTrigger);
+import SectionHead from '@/components/SectionHead';
+import { useReveal } from '@/hooks/use-reveal';
 
 const pillars = [
   {
     title: 'AI Innovation',
     description:
-      'We back visionary founders leveraging artificial intelligence to redefine industries. We provide deep technical guidance alongside capital.',
+      'Applied AI across fintech and other industries, backed by technical diligence rather than trend-chasing.',
   },
   {
     title: 'Financial Acumen',
     description:
-      'Our financial expertise helps portfolio companies build robust business models, navigate regulation, and grow sustainably.',
+      'Underwriting discipline drawn from institutional finance: capital structure, unit economics, and regulatory fluency.',
   },
   {
     title: 'Risk Management',
     description:
-      'We implement institutional-grade risk frameworks to ensure long-term stability and resilience in volatile markets.',
+      'Structured governance and portfolio construction designed to hold through market and regulatory cycles.',
   },
   {
     title: 'Global Network',
     description:
-      'Access to a worldwide network of partners, advisors, and potential clients to accelerate go-to-market strategies.',
+      'Cross-border relationships across Southeast Asia ecosystem, connecting portfolio companies to capital and partners.',
   },
 ];
 
 export default function ApproachSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from('.approach-el', {
-        opacity: 0, y: 30, duration: 0.7, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: section, start: 'top 85%', once: true },
-      });
-    }, section);
-
-    return () => ctx.revert();
-  }, []);
+  const sectionRef = useReveal<HTMLElement>('.approach-el');
 
   return (
-    <section id="approach" ref={sectionRef} className="bg-white py-28 md:py-36">
+    <section id="approach" ref={sectionRef} className="bg-paper py-28 md:py-32">
       <div className="container-main">
-        <div className="approach-el mb-16 max-w-[640px]">
-          <SectionLabel text="Our Approach" />
-          <h2 className="mt-4 font-serif text-display-l text-ink">Dual Expertise in Technology & Finance</h2>
-          <div className="mt-4 h-px w-10 bg-gradient-to-r from-gold to-green-accent" />
-          <p className="mt-5 text-body-l leading-relaxed text-slate">
-            We don&rsquo;t just invest; we build. Our team combines deep technical knowledge in
-            artificial intelligence with decades of experience in traditional finance. This unique
-            intersection allows us to identify and nurture the true disruptors of tomorrow.
-          </p>
+        <div className="approach-el">
+          <SectionHead
+            eyebrow="Approach"
+            title="Dual Expertise in Technology & Finance"
+            side="We back founders at the intersection of applied AI and financial systems, where technical depth and capital discipline compound together."
+          />
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {pillars.map((p) => (
-            <div key={p.title} className="approach-el">
-              <PillarCard title={p.title} description={p.description} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {pillars.map((p, i) => (
+            <div
+              key={p.title}
+              className={`approach-el border-line py-8 lg:py-10 ${
+                i !== pillars.length - 1 ? 'border-b lg:border-b-0 lg:border-r' : ''
+              }`}
+            >
+              <div className="mr-0 lg:mr-9">
+                <div className="mb-5 font-serif text-sm font-semibold tracking-wide text-gold-deep">
+                  0{i + 1}
+                </div>
+                <h3 className="mb-3 font-serif text-[21px] font-semibold text-ink">{p.title}</h3>
+                <p className="text-[14.5px] leading-[1.65] text-ink-soft">{p.description}</p>
+              </div>
             </div>
           ))}
         </div>

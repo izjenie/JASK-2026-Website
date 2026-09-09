@@ -6,8 +6,8 @@ import { Menu, X } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
-  { label: 'About', href: '#approach' },
   { label: 'Approach', href: '#approach' },
+  { label: 'Track Record', href: '#trackrecord' },
   { label: 'Portfolio', href: '#portfolio' },
 ];
 
@@ -41,43 +41,43 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50 bg-navy transition-all duration-300"
-      style={{
-        boxShadow: scrolled ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 border-b border-gold/25 bg-navy/95 backdrop-blur-sm transition-all duration-300 ${
+        scrolled ? 'shadow-sm' : ''
+      }`}
     >
-      <div className="container-main flex items-center justify-between py-4">
-        {/* Logo */}
+      <div className="container-main flex h-16 items-center justify-between md:h-[76px]">
+        {/* Brand */}
         <a
-          href="#"
+          href="#hero"
           className="flex items-center gap-2"
           onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          <img src="/logo.png" alt="JasKapital" className="h-7 w-7" />
-          <span className="text-base font-medium tracking-tight text-white">
-            JasKapital
+          <img src="/logo.png" alt="JasKapital" className="h-8 w-8" />
+          <span className="font-serif text-[22px] font-semibold tracking-wide text-cream">
+            Jas<span className="text-gold">Kapital</span>
           </span>
         </a>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-10 lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm text-white/70 transition-colors duration-200 hover:text-white"
+              className="group relative pb-1 text-sm font-medium uppercase tracking-widest text-[#C9CDD6] transition-colors duration-200 hover:text-white"
             >
               {link.label}
+              <span className="absolute bottom-0 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="rounded px-5 py-2.5 text-[13px] font-medium uppercase tracking-wider text-gold border border-gold transition-all duration-200 hover:bg-gold hover:text-navy"
+            className="border border-gold px-6 py-3 text-[13px] font-semibold uppercase tracking-widest text-gold transition-all duration-200 hover:bg-gold hover:text-navy"
           >
             Get In Touch
           </a>
@@ -85,9 +85,10 @@ export default function Header() {
 
         {/* Mobile Hamburger */}
         <button
-          className="text-white md:hidden"
+          className="flex items-center justify-center p-2.5 text-cream lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -95,14 +96,14 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-navy px-6 pb-6 md:hidden">
-          <nav className="flex flex-col gap-4 pt-4">
+        <div className="border-t border-gold/25 bg-navy px-6 pb-4 lg:hidden">
+          <nav className="flex flex-col">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-sm text-white/70 transition-colors duration-200 hover:text-white"
+                className="flex min-h-11 items-center border-b border-white/10 text-sm uppercase tracking-widest text-[#C9CDD6] transition-colors duration-200 hover:text-white"
               >
                 {link.label}
               </a>
@@ -110,7 +111,7 @@ export default function Header() {
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="text-center rounded px-5 py-2.5 text-[13px] font-medium uppercase tracking-wider text-gold border border-gold transition-all duration-200 hover:bg-gold hover:text-navy"
+              className="mt-4 flex min-h-11 items-center justify-center border border-gold px-6 text-[13px] font-semibold uppercase tracking-widest text-gold transition-all duration-200 hover:bg-gold hover:text-navy"
             >
               Get In Touch
             </a>
